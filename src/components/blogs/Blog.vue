@@ -1,19 +1,19 @@
 <template>
-  <h1>{{ msg }}</h1>
-  <button @click="count++">count is: {{ count }}</button>
-  <p>Edit <code>components/HelloWorld.vue</code> to test hot module replacement.</p>
+  <section>
+    <h1>TITLE</h1>
+    <div>BODY</div>
+    <router-view></router-view>
+  </section>
+  <section>
+    <div>LIKE 10 | DISLIKE 5</div>
+  </section>
+  <section>
+    <div>COMMENTS</div>
+  </section>
 </template>
 
 <script>
 export default {
-  name: 'Blogs',
-  props: {
-    msg: String
-  },
-  data() {
-    return {
-      count: 0
-    }
-  }
-}
+  name: "Blogs",
+};
 </script>
