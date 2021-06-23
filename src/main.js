@@ -16,13 +16,13 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 var firebaseConfig = {
-  "apiKey": "AIzaSyBQIrWQaM2Mc6LHdD1QPa0nQaYa4bB-U2A",
-  "authDomain": "thetoxify-firebase.firebaseapp.com",
-  "projectId": "thetoxify-firebase",
-  "storageBucket": "thetoxify-firebase.appspot.com",
-  "messagingSenderId": "493647121413",
-  "appId": "1:493647121413:web:c0adc8eda4ce1d2f61a06c",
-  "measurementId": "G-6DPSP7Q5X0"
+  "apiKey": process.env.API_KEY,
+  "authDomain": process.env.AUTH_DOMAIN,
+  "projectId": process.env.PROJECT_ID,
+  "storageBucket": process.env.STORAGE_BUCKET,
+  "messagingSenderId": process.env.MESSAGING_SENDER_ID,
+  "appId": process.env.APP_ID,
+  "measurementId": process.env.MEASUREMENT_ID
 }
 
 firebase.initializeApp(firebaseConfig);
