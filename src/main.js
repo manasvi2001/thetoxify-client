@@ -5,6 +5,7 @@ import firebase from 'firebase';
 
 import App from './App.vue';
 import { QuillEditor } from "@vueup/vue-quill";
+import BaseHeader from './components/ui/BaseHeader.vue';
 import BaseCard from './components/ui/BaseCard.vue';
 import BaseButton from './components/ui/BaseButton.vue';
 import BaseBadge from './components/ui/BaseBadge.vue';
@@ -16,13 +17,13 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 var firebaseConfig = {
-  "apiKey": process.env.API_KEY,
-  "authDomain": process.env.AUTH_DOMAIN,
-  "projectId": process.env.PROJECT_ID,
-  "storageBucket": process.env.STORAGE_BUCKET,
-  "messagingSenderId": process.env.MESSAGING_SENDER_ID,
-  "appId": process.env.APP_ID,
-  "measurementId": process.env.MEASUREMENT_ID
+  "apiKey": import.meta.env.VITE_API_KEY,
+  "authDomain": import.meta.env.VITE_AUTH_DOMAIN,
+  "projectId": import.meta.env.VITE_PROJECT_ID,
+  "storageBucket": import.meta.env.VITE_STORAGE_BUCKET,
+  "messagingSenderId": import.meta.env.VITE_MESSAGING_SENDER_ID,
+  "appId": import.meta.env.VITE_APP_ID,
+  "measurementId": import.meta.env.VITE_MEASUREMENT_ID
 }
 
 firebase.initializeApp(firebaseConfig);
@@ -33,6 +34,7 @@ const app = createApp(App);
 app.use(router);
 app.use(store);
 
+app.component('base-header', BaseHeader);
 app.component('base-card', BaseCard);
 app.component('base-button', BaseButton);
 app.component('base-badge', BaseBadge);

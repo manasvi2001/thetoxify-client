@@ -1,5 +1,5 @@
 <template>
-  <button v-if="!link" :class="mode">
+  <button v-if="!link" :class="mode" @click="callback">
     <slot></slot>
   </button>
   <router-link v-else :to="to" :class="mode">
@@ -25,6 +25,11 @@ export default {
       type: String,
       required: false,
       default: "/",
+    },
+    callback: {
+      type: Function,
+      required: false,
+      default: null,
     },
   },
 };

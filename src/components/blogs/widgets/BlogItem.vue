@@ -1,7 +1,7 @@
 <template>
   <li>
     <div class="media">
-      <div class="media-left mx-0">
+      <!-- <div class="media-left mx-0">
         <div class="columns my-0 min-width-100">
           <div class="column rows py-0 centered-text">
             <div class="mt-0 c-pointer" @click="updateLike">
@@ -15,7 +15,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="media-content">
         <div class="content">
           <router-link :to="blogLink">
