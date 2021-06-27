@@ -27,6 +27,7 @@ var firebaseConfig = {
 }
 
 console.log(import.meta.env.MODE);
+console.log(import.meta.env.VITE_API_KEY);
 console.log(JSON.stringify(firebaseConfig));
 
 firebase.initializeApp(firebaseConfig);
