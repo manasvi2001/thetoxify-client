@@ -18,6 +18,7 @@ import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 var firebaseConfig = {
   "apiKey": import.meta.env.VITE_API_KEY,
+  "apiKey1": process.env.VITE_API_KEY,
   "authDomain": import.meta.env.VITE_AUTH_DOMAIN,
   "projectId": import.meta.env.VITE_PROJECT_ID,
   "storageBucket": import.meta.env.VITE_STORAGE_BUCKET,
@@ -25,6 +26,8 @@ var firebaseConfig = {
   "appId": import.meta.env.VITE_APP_ID,
   "measurementId": import.meta.env.VITE_MEASUREMENT_ID
 }
+
+console.log(firebaseConfig);
 
 firebase.initializeApp(firebaseConfig);
 
