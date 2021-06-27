@@ -32,20 +32,6 @@ export default {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.isLoggedIn = true; // if we have a user
-        this.navItems = [
-          {
-            title: "Create Blog",
-            link: true,
-            to: "/createBlog",
-            callback: null,
-          },
-          {
-            title: "Logout",
-            link: false,
-            to: "",
-            callback: this.googleSignOut,
-          },
-        ];
       } else {
         this.isLoggedIn = false; // if we do not
         this.navItems = [
