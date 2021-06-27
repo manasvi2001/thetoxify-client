@@ -26,6 +26,7 @@ var firebaseConfig = {
   "measurementId": import.meta.env.VITE_MEASUREMENT_ID
 }
 
+console.log(import.meta.env.MODE);
 console.log(JSON.stringify(firebaseConfig));
 
 firebase.initializeApp(firebaseConfig);
