@@ -1,34 +1,55 @@
 <template>
   <section>
     <base-card>
-      <h1>{{ title }}</h1>
-      <h3>{{ author }} {{ timestamp }}</h3>
+      <div class="p-4">
+        <h1 class="text-2xl font-semibold">{{ title }}</h1>
+        <h3 class="text-sm">By: {{ author }} | Posted on: {{ timestamp }}</h3>
+      </div>
       <div class="bottom-padding">
         <quill-editor
           theme="bubble"
           readOnly
-          contentType="text"
           :content="content"
+          :class="['text-base']"
         />
       </div>
-      <div>LIKES {{ likes }} | DISLIKE {{ dislikes }}</div>
-      <base-badge v-for="tag in tags" :key="tag" :title="tag"></base-badge>
+      <!-- <div>LIKES {{ likes }} | DISLIKE {{ dislikes }}</div> -->
+      <div class="p-4">
+        <base-badge v-for="tag in tags" :key="tag" :title="tag"></base-badge>
+      </div>
     </base-card>
   </section>
-  <section>
+  <!-- <section>
     <base-card>
       <div>{{ comment }}</div>
     </base-card>
-  </section>
+  </section> -->
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
   name: "Blogs",
-  props: ["id"],
+  props: ["id", "isLoggedIn"],
+  emits: ["update-header"],
   data() {
     return {
       selectedBlog: null,
+      headerLinks: [
+        {
+          title: "All Blogs",
+          link: true,
+          to: "/blogs",
+          callback: null,
+        },
+        {
+          title: "Create Blog",
+          link: true,
+          to: "/createBlog",
+          callback: null,
+        },
+      ],
     };
   },
   computed: {
@@ -36,10 +57,10 @@ export default {
       return this.selectedBlog.title;
     },
     author() {
-      return this.selectedBlog.userId;
+      return this.selectedBlog.userName;
     },
     timestamp() {
-      return this.selectedBlog.timestamp;
+      return moment(this.selectedBlog.timestamp).format("DD-MMM-YYYY");
     },
     tags() {
       return this.selectedBlog.tags;
@@ -57,10 +78,20 @@ export default {
       return this.selectedBlog.commentId;
     },
   },
+  watch: {
+    isLoggedIn(value) {
+      if (value) {
+        this.$emit("update-header", this.headerLinks);
+      }
+    },
+  },
   created() {
     this.selectedBlog = this.$store.getters["blogs/blogs"].find(
       (blog) => blog.id == this.id
     );
+    if (this.isLoggedIn) {
+      this.$emit("update-header", this.headerLinks);
+    }
   },
 };
 </script>

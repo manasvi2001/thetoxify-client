@@ -5,7 +5,7 @@
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline">REFRESH</base-button>
+        <base-button mode="outline" @click="fetchBlogs">REFRESH</base-button>
       </div>
       <ul v-if="hasBlogs">
         <blog-item
@@ -33,14 +33,27 @@ import BlogFilter from "./widgets/BlogFilter.vue";
 export default {
   components: { BlogItem, BlogFilter },
   name: "AllBlogs",
+  props: ["isLoggedIn"],
+  emits: ["update-header"],
   data() {
     return {
       searchFilter: "",
+      headerLinks: [
+        {
+          title: "Create Blog",
+          link: true,
+          to: "/createBlog",
+          callback: null,
+        },
+      ],
     };
   },
   methods: {
     setFilter(searchString) {
       this.searchFilter = searchString;
+    },
+    fetchBlogs() {
+      this.$store.dispatch("blogs/fetchBlogs");
     },
     updateLike(id) {
       this.$store.dispatch("blogs/updateLike", id);
@@ -53,11 +66,24 @@ export default {
     filteredBlogs() {
       return this.$store.getters["blogs/blogs"]
         .filter((blog) => blog.published)
-        .filter((blog) => blog.title.includes(this.searchFilter));
+        .filter((blog) => blog.title.toLowerCase().includes(this.searchFilter));
     },
     hasBlogs() {
-      return this.$store.getters["blogs/hasBlogs"];
+      return this.filteredBlogs().length > 0;
     },
+  },
+  watch: {
+    isLoggedIn(value) {
+      if (value) {
+        this.$emit("update-header", this.headerLinks);
+      }
+    },
+  },
+  created() {
+    if (this.isLoggedIn) {
+      this.$emit("update-header", this.headerLinks);
+    }
+    this.fetchBlogs();
   },
 };
 </script>

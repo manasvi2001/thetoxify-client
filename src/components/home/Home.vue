@@ -2,8 +2,11 @@
   <section class="text-center">
     <base-header title="TheToxify" :navItems="navItems"></base-header>
   </section>
-  <section>
-    <router-view></router-view>
+  <section class="flex flex-col justify-start">
+    <router-view
+      @update-header="updateHeader"
+      :isLoggedIn="isLoggedIn"
+    ></router-view>
   </section>
 </template>
 
@@ -29,20 +32,6 @@ export default {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.isLoggedIn = true; // if we have a user
-        this.navItems = [
-          {
-            title: "Create Blog",
-            link: true,
-            to: "/createBlog",
-            callback: null,
-          },
-          {
-            title: "Logout",
-            link: false,
-            to: "",
-            callback: this.googleSignOut,
-          },
-        ];
       } else {
         this.isLoggedIn = false; // if we do not
         this.navItems = [
@@ -90,6 +79,17 @@ export default {
     },
     googleSignOut() {
       firebase.auth().signOut();
+    },
+    updateHeader(data) {
+      this.navItems = [
+        ...data,
+        {
+          title: "Logout",
+          link: false,
+          to: "",
+          callback: this.googleSignOut,
+        },
+      ];
     },
   },
 };

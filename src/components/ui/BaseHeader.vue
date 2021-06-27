@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-row justify-between items-center mb-5">
-    <div class="text-4xl">
+    <div class="text-4xl font-medium">
       <router-link to="/">{{ title }}</router-link>
     </div>
     <div v-if="showNavBar" class="flex-none">

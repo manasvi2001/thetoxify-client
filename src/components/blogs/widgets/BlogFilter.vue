@@ -1,13 +1,13 @@
 <template>
   <base-card>
-    <h2>Find Blogs</h2>
     <span>
       <input
         type="text"
-        placeholder="Search keywords"
+        placeholder="Search blogs"
         name="searchbox"
-        v-model.lazy="searchFilter"
+        v-model="searchFilter"
         @input="setFilter"
+        class="w-full outline-none"
       />
     </span>
   </base-card>
@@ -23,7 +23,7 @@ export default {
   },
   emits: ["change-filter"],
   methods: {
-    setFilter(event) {
+    setFilter(_) {
       this.$emit("change-filter", this.searchFilter);
     },
   },

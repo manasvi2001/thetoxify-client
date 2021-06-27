@@ -1,5 +1,5 @@
 <template>
-  <button v-if="!link" :class="mode" @click="callback">
+  <button v-if="!link" :class="[mode, 'outline-none']" @click="callback">
     <slot></slot>
   </button>
   <router-link v-else :to="to" :class="mode">
