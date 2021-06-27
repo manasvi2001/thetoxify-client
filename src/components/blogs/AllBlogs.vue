@@ -69,7 +69,7 @@ export default {
         .filter((blog) => blog.title.toLowerCase().includes(this.searchFilter));
     },
     hasBlogs() {
-      return this.filteredBlogs().length > 0;
+      return this.filteredBlogs.length > 0;
     },
   },
   watch: {
