@@ -6,7 +6,8 @@ export default {
   namespaced: true,
   state() {
     return {
-      blogs: []
+      blogs: [],
+      selectedBlog: null,
     }
   },
   mutations,
