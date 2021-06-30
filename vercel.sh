@@ -1,8 +1,12 @@
 #!/bin/bash
 
-echo $VITE_STORAGE_BUCKET # a variable from your set variables
+touch .env 
+echo "VITE_API_KEY=$VITE_API_KEY" >> .env
+echo "VITE_AUTH_DOMAIN=$VITE_AUTH_DOMAIN" >> .env
+echo "VITE_PROJECT_ID=$VITE_PROJECT_ID" >> .env
+echo "VITE_STORAGE_BUCKET=$VITE_STORAGE_BUCKET" >> .env
+echo "VITE_MESSAGING_SENDER_ID=$VITE_MESSAGING_SENDER_ID" >> .env
+echo "VITE_APP_ID=$VITE_APP_ID" >> .env
+echo "VITE_MEASUREMENT_ID=$VITE_MEASUREMENT_ID" >> .env
 
-VITE_STORAGE_BUCKET=thetoxify_storage_bucket # random value to check if it's getting set 
-
-# the actually build step to run the build.
-npm run build
+npm run build 
