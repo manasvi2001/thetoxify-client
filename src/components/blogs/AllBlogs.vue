@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="hasBlogs">
     <blog-filter @change-filter="setFilter"></blog-filter>
   </section>
   <section>
@@ -21,7 +21,9 @@
           @disliked="updateDislike"
         ></blog-item>
       </ul>
-      <h3 v-else>No Blogs Found.</h3>
+      <h3 v-else class="text-xl font-semibold text-center w-full my-16">
+        No Blogs Found.
+      </h3>
     </base-card>
   </section>
 </template>
