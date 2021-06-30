@@ -26,6 +26,9 @@ var firebaseConfig = {
   "measurementId": import.meta.env.VITE_MEASUREMENT_ID
 }
 
+console.log(process.env);
+console.log(import.meta.env);
+
 firebase.initializeApp(firebaseConfig);
 
 library.add(faChevronUp, faChevronDown);
