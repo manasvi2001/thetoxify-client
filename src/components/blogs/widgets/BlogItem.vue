@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  props: ["likes", "dislikes", "title", "tags", "id", "userId"],
+  props: ["likes", "dislikes", "title", "tags", "id", "userName"],
   data() {
     return {
       author: "",
@@ -71,7 +71,7 @@ export default {
     },
   },
   created() {
-    this.author = this.userId;
+    this.author = this.userName;
   },
 };
 </script>

@@ -1,4 +1,7 @@
 export default {
+  getUniqueUserId() {
+    return "ttusr-" + this.getId();
+  },
   getUniqueBlogId() {
     return "ttblg-" + this.getId();
   },

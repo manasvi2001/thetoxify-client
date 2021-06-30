@@ -16,7 +16,7 @@
           :title="blog.title"
           :tags="blog.tags"
           :id="blog.id"
-          :userId="blog.userId"
+          :userName="blog.userName"
           @liked="updateLike"
           @disliked="updateDislike"
         ></blog-item>

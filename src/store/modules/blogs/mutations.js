@@ -1,10 +1,6 @@
 export default {
   fetchBlogs(state, payload) {
-    if (payload) {
-      state.blogs = [...payload];
-    } else {
-      state.blogs = [];
-    }
+    state.blogs = [...payload];
   },
   setSelectedBlog(state, payload) {
     state.selectedBlog = payload;
