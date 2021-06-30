@@ -9,6 +9,9 @@ export default {
   setSelectedBlog(state, payload) {
     state.selectedBlog = payload;
   },
+  setSelectedBlog(state, payload) {
+    state.selectedBlog = payload;
+  },
   createBlog(state, payload) {
     state.blogs = [
       ...state.blogs,

@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import util from "./../../util/utility";
 
 export default {
@@ -54,8 +55,8 @@ export default {
         return;
       }
       let newBlog = {
-        userId: "u1",
-        userName: "abc",
+        userId: this.userId(),
+        userName: this.userName(),
         title: this.title,
         content: this.blogContent,
         likes: 0,
@@ -69,6 +70,10 @@ export default {
       this.$store.dispatch("blogs/createBlog", newBlog);
       this.$router.push("/blogs");
     },
+    ...mapGetters("users", {
+      userId: "userId",
+      userName: "userName",
+    }),
   },
   watch: {
     isLoggedIn(value) {

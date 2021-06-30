@@ -32,8 +32,15 @@ export default {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.isLoggedIn = true; // if we have a user
+        this.$store.dispatch("users/setUser", {
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          userId: user.uid,
+        });
       } else {
         this.isLoggedIn = false; // if we do not
+        this.$store.dispatch("users/logout");
         this.navItems = [
           {
             title: "Login",
@@ -62,7 +69,6 @@ export default {
           var token = credential.accessToken;
           // The signed-in user info.
           var user = result.user;
-          console.log(user);
           // ...
         })
         .catch((error) => {

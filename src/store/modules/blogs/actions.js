@@ -5,7 +5,10 @@ export default {
 
     }
     let payload = await response.json();
-    let blogs = Object.values(payload);
+    let blogs = [];
+    if (payload) {
+      blogs = Object.values(payload);
+    }
     context.commit('fetchBlogs', blogs);
   },
   async fetchBlog(context, blogId) {
