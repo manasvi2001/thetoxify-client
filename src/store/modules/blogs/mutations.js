@@ -1,6 +1,13 @@
 export default {
   fetchBlogs(state, payload) {
-    state.blogs = [...payload];
+    if (payload) {
+      state.blogs = [...payload];
+    } else {
+      state.blogs = [];
+    }
+  },
+  setSelectedBlog(state, payload) {
+    state.selectedBlog = payload;
   },
   createBlog(state, payload) {
     state.blogs = [
