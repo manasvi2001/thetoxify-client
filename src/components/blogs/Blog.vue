@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="selectedBlog">
     <base-card>
       <div class="p-4">
         <h1 class="text-2xl font-semibold">{{ title }}</h1>
@@ -15,6 +15,7 @@
       </div>
       <!-- <div>LIKES {{ likes }} | DISLIKE {{ dislikes }}</div> -->
       <div class="p-4">
+        <span>Tags :</span>&nbsp;
         <base-badge v-for="tag in tags" :key="tag" :title="tag"></base-badge>
       </div>
     </base-card>
@@ -28,6 +29,7 @@
 
 <script>
 import moment from "moment";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Blogs",
@@ -35,7 +37,6 @@ export default {
   emits: ["update-header"],
   data() {
     return {
-      selectedBlog: null,
       headerLinks: [
         {
           title: "All Blogs",
@@ -77,6 +78,12 @@ export default {
     comment() {
       return this.selectedBlog.commentId;
     },
+    ...mapGetters("blogs", ["selectedBlog"]),
+  },
+  methods: {
+    setBlog() {
+      this.$store.dispatch("blogs/fetchBlog", this.id);
+    },
   },
   watch: {
     isLoggedIn(value) {
@@ -86,9 +93,7 @@ export default {
     },
   },
   created() {
-    this.selectedBlog = this.$store.getters["blogs/blogs"].find(
-      (blog) => blog.id == this.id
-    );
+    this.setBlog();
     if (this.isLoggedIn) {
       this.$emit("update-header", this.headerLinks);
     }
