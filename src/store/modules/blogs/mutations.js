@@ -1,6 +1,6 @@
 export default {
   fetchBlogs(state, payload) {
-    state.blogs = [payload];
+    state.blogs = [...payload];
   },
   createBlog(state, payload) {
     state.blogs = [

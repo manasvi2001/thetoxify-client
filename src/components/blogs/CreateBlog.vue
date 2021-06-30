@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import util from "./../../util/utility";
+
 export default {
   name: "CreateBlog",
   props: ["isLoggedIn"],
@@ -48,6 +50,9 @@ export default {
       console.log(JSON.stringify(this.blogContent));
     },
     publishBlog() {
+      if (this.title.trim().length == 0) {
+        return;
+      }
       let newBlog = {
         userId: "u1",
         userName: "abc",
@@ -59,6 +64,7 @@ export default {
         published: true,
         timestamp: Date.now(),
         tags: ["anime"],
+        id: util.getUniqueBlogId(),
       };
       this.$store.dispatch("blogs/createBlog", newBlog);
       this.$router.push("/blogs");
